@@ -18,7 +18,7 @@ TODO:
 3.- Invocar el router para renderizar la vista correcta.
 */
 
-import Home from './views/Home.js';                                // ... import other views
+import Home from './views/home.js';                                // ... import other views
 import { setRootEl, setRoutes, onURLChange } from './router.js';
 import llave from './views/apikeyVista.js';
 
@@ -35,7 +35,9 @@ setRoutes(routes);
 // Set the root element where views will be rendered
 window.addEventListener("DOMContentLoaded", () => {
   setRootEl(document.getElementById('root'));
-  onURLChange(window.location.pathname); // llama a onURL con la ruta inicial
+  onURLChange(window.location); // llama a onURL con la ruta inicial
 });
-
-window.onpopstate = onURLChange;          // Se ejecuta cuando el historial de navegación cambia
+window.addEventListener("popstate", () => {
+onURLChange = window.location
+});
+//window.onpopstate = onURLChange;          // Se ejecuta cuando el historial de navegación cambia

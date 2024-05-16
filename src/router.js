@@ -36,7 +36,7 @@ const renderView = (pathname, props={}) => {
 } 
 
 export const navigateTo = (pathname, props={}) => {
-    let pageUrl = pathname+ "?" + new UrlSearchParams(props)
+    let pageUrl = pathname+ "?" + new URLSearchParams(props)
     history.pushState({},"",pageUrl )
     renderView(location.pathname, props)
   // update window history with pushState

@@ -2,7 +2,7 @@
 
 const llave = () => {
    const apiVista = document.createElement ("div")
-   const apiContainer = apiVista.createElement("div")
+   const apiContainer = document.createElement("div")
 
    apiContainer.innerHtml = `
 
@@ -20,7 +20,8 @@ const llave = () => {
         setApiKey(apiKey);
         alert('API Key guardada correctamente.');
     }; */
-
+    apiVista.appendChild(apiContainer)
+    console.log("vista apikey")
     return apiVista;
 }; 
 

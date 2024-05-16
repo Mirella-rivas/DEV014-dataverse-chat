@@ -1,5 +1,6 @@
 import data from '../data/dataset.js';
 import { filterData, sortData, computeStats } from '../lib/dataFunctions.js';
+import { navigateTo } from '../router.js';
 
 export const Home = () => {
   const viewEl = document.createElement('div')
@@ -102,8 +103,19 @@ export const Home = () => {
       elementli.appendChild(chatButton)
       elementUl.appendChild(elementli);
 
+
+        //chat
+  const chat = elementli.querySelector('#chat');
+
+  console.log(chat)
+  chat.addEventListener('click', function () {
+       console.log("hola")
+       alert ("se dio click en el boton");
+      navigateTo('/apikeyVista', personajes.id);
     });
 
+
+  });
     return elementUl;
 
   };
@@ -111,13 +123,12 @@ export const Home = () => {
 
 
   //Selectores del DOM
-  const elRoot = viewEl.querySelector('#root');
+  const ElRoot = viewEl.querySelector('#root');
   const estadistica = viewEl.querySelector('#estadistica')
   const selectFilter = viewEl.querySelector('#filter')  // Select con id filter
   const selectOrder = viewEl.querySelector("#select-sort")
   const resetButton = viewEl.querySelector('#resetButton')
   const buttonCalcular = viewEl.querySelector('#calcular') //Estadistica
-  const chat = viewEl.querySelector('#chat');
 
   const nav = viewEl.querySelector("#nav");
   const abrir = viewEl.querySelector("#abrir");
@@ -167,11 +178,7 @@ export const Home = () => {
     root.appendChild(cardsOrdenados)
   });
 
-  //chat
-  
-  chat.addEventListener('click', function () {
-       console.log("hola")
-  });
+
 
 
   //BOTON DE LIMPIAR
