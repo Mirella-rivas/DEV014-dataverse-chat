@@ -23,7 +23,7 @@ const queryStringToObject = (queryString) => {
 }
 
 const renderView = (pathname, props={}) => {
-    rootEl.innerHtml = ""
+    rootEl.innerHTML = ""
     const vista=ROUTES[pathname] || ROUTES["/error"]
     console.log(vista);
     // const vistaProms= vista(props)
