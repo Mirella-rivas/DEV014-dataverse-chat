@@ -2,13 +2,14 @@ import data from '../data/dataset.js';
 import { filterData, sortData, computeStats } from '../lib/dataFunctions.js';
 import { navigateTo } from '../router.js';
 
+
 export const Home = () => {
   const viewEl = document.createElement('div')
   viewEl.innerHTML = `
     
-  < header >
+    < header >
     <h1> GILMORE GIRLS SERIE </h1>
-  </header >
+    </header >
 
     <button id="abrir" class="abrir-menu"><i class="bi bi-list"></i></button>
 
@@ -31,6 +32,7 @@ export const Home = () => {
        </select>
       <button id="resetButton" data-testid="button-clear">LIMPIAR</button>
       <button id="calcular">PROMEDIO DE APARICIONES:</button>
+      <button id="apikey">API KEY</button>
     </div>
   </nav> 
   <main>
@@ -44,6 +46,11 @@ export const Home = () => {
 
 
   const root = viewEl.querySelector('#root');
+  const buttonapikey=viewEl.querySelector('#apikey')
+  console.log(buttonapikey);
+  buttonapikey.addEventListener("click" ,() =>{
+    navigateTo("/apiKey")
+  })
   const renderItems = (data) => {
 
     const elementUl = document.createElement('ul');
@@ -79,16 +86,20 @@ export const Home = () => {
 
       const ddShortDescription = document.createElement('dd')
       ddShortDescription.textContent = personajes.shortDescription; //esto es para reempazar el shortD en el contenidodd
-      //INTERESES
+      /*INTERESES
       const dtIntereses = document.createElement('dt')
       dtIntereses.textContent = 'Intereses:';            //esto es para cambiar el termino x description
 
       const ddIntereses = document.createElement('dd')
-      ddIntereses.textContent = personajes.facts.intereses;
+      ddIntereses.textContent = personajes.facts.intereses; */
 
-      const chatButton= document.createElement('button')
+      /*const chatButton = document.createElement('button')
       chatButton.textContent = "chatea conmigo";
-      chatButton.setAttribute('id', 'chat');
+      chatButton.setAttribute('id', 'chat'); */
+
+      const chatNovela = document.createElement('button')
+      chatNovela.textContent = "chatea conmigo";
+      chatNovela.setAttribute('id', 'chatGilmore');
 
       //GUARDO
       //appen guardar y mostrar
@@ -96,28 +107,43 @@ export const Home = () => {
       dlpersonajes.appendChild(ddName);
       dlpersonajes.appendChild(dtShortDescription);
       dlpersonajes.appendChild(ddShortDescription);
-      dlpersonajes.appendChild(dtIntereses);
-      dlpersonajes.appendChild(ddIntereses);
+      //dlpersonajes.appendChild(dtIntereses);
+      //dlpersonajes.appendChild(ddIntereses);
 
       elementli.appendChild(dlpersonajes);
-      elementli.appendChild(chatButton)
+      //elementli.appendChild(chatButton);
+      elementli.appendChild(chatNovela);
       elementUl.appendChild(elementli);
 
 
-        //chat
-  const chat = elementli.querySelector('#chat');
+      /*chat
+      const chat = elementli.querySelector('#chat');
 
-  console.log(chat)
-  chat.addEventListener('click', function () {
-       console.log("hola")
-       alert ("se dio click en el boton");
-      navigateTo('/apikeyVista', personajes.id);
+      console.log(chat)
+      chat.addEventListener('click', function () {
+        console.log("hola")
+        alert("se dio click en el boton");
+        navigateTo('/personajes', personajes);
+      }); */
+
+
+      //personajes
+      const chatPersonaje = elementli.querySelector('#chatGilmore');
+      
+      console.log(chatPersonaje)
+      chatPersonaje.addEventListener('click', function () {
+        console.log("holahola")
+        alert("se dio click en el boton chat");
+        navigateTo('/personajes', personajes);
+      });
+
+
+
     });
 
 
-  });
-    return elementUl;
 
+    return elementUl;
   };
 
 

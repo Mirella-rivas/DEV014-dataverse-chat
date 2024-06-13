@@ -21,11 +21,13 @@ TODO:
 import Home from './views/home.js';                                // ... import other views
 import { setRootEl, setRoutes, onURLChange } from './router.js';
 import llave from './views/apikeyVista.js';
+import personajes from './views/personajes.js';
 
 // Define your routes and their associated views
 const routes = {
   '/': Home,
-  '/apikeyVista' : llave,
+  '/apiKey' : llave,
+  '/personajes' : personajes,
   // ...
 };
 
