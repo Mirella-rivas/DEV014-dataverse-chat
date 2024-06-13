@@ -24,10 +24,14 @@ const queryStringToObject = (queryString) => {
 
 const renderView = (pathname, props={}) => {
     rootEl.innerHTML = ""
-    const vista=ROUTES[pathname] || ROUTES["/error"]
-    console.log(vista);
-    // const vistaProms= vista(props)
-    rootEl.appendChild(vista(props))
+    const vista=ROUTES[pathname]
+    if(!vista){
+      rootEl.innerHTML='Error 404 tu pagina no existe'
+    }else{
+      const vistaProms= vista(props)
+      rootEl.appendChild(vistaProms)
+    }
+     
   // clear the root element
   // find the correct view in ROUTES for the pathname
   // in case not found render the error view
@@ -35,19 +39,25 @@ const renderView = (pathname, props={}) => {
   // add the view element to the DOM root element
 } 
 
-export const navigateTo = (pathname, props={}) => {
-    let pageUrl = pathname+ "?" + new URLSearchParams(props)
-    history.pushState({},"",pageUrl )
-    renderView(location.pathname, props)
-  // update window history with pushState
-  // render the view with the pathname and props
+/*export const navigateTo = (pathname, props={}) => {
+  let pageUrl = pathname+ "?" + new URLSearchParams(props)
+  history.pushState({},"",pageUrl )
+  renderView(location.pathname) // Solo pasa el pathname a renderView
+}
+*/
+  export const navigateTo = (pathname, props={}) => {
+  let pageUrl = pathname+ "?" + new URLSearchParams(props)
+  history.pushState({},"",pageUrl )
+  renderView(location.pathname, props)
+// update window history with pushState
+// render the view with the pathname and props
 }
 
 export const onURLChange = (location) => {
-    const {pathname , search} = location
+    const {search} = location
     const SearchParams = queryStringToObject (search)
     let paramsToObject = queryStringToObject (location.search)
-    renderView(location, paramsToObject)
+    renderView(location.pathname, paramsToObject)
   // parse the location for the pathname and search params
   // convert the search params to an object
   // render the view with the pathname and object
